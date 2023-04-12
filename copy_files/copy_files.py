@@ -14,6 +14,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 import pyodbc
 import json
+import time
 
 total_MB = 0
 total_files = 0
@@ -128,10 +129,12 @@ def update_db_log(date, description, duration, db_connection):
     
     cursor = db_connection.cursor()
     
-    #block the resource
-    with cursor:
+     try:
         # Execute the INSERT statement
         cursor.execute(insert_query, values)
+     except Exception as e:
+        time.sleep(1)
+        update_db_log(date, description, duration, db_connection)
         
     # Commit the transaction
     db_connection.commit()
