@@ -177,17 +177,13 @@ if __name__ == '__main__':
     
     # close the database connection
     conn.close()
+    
     '''
-    select * 
-    from  t_copy_files_log
-    order by 1 desc
---drop table t_copy_files_log
-create table t_copy_files_log(
-fecha datetime,
-descripcion varchar(1000),
-tiempo_transferencia_en_min int
-);
-
+    create table t_copy_files_log(
+    fecha datetime,
+    descripcion varchar(1000),
+    tiempo_transferencia_en_min int
+    );
     '''
               
               
